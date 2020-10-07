@@ -1,0 +1,48 @@
+"""projpad URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django import views
+from appprincipal.views import IndexTemplateView, AboutView, NewVendaView, FuncListView
+from django.contrib import admin
+from django.urls import include, path
+from django.conf import settings
+from appprincipal.views import *
+
+
+from django.conf.urls.static import static
+from django.conf import settings
+#from . import views
+
+app_name = 'appprincipal'
+
+urlpatterns = [
+    #path('', views.Hello, name = 'Hello')
+    path('', IndexTemplateView.as_view(), name = 'index'),
+    #path('', include('projpad.urls', namespace = 'projpad'))
+    #url(r'^',include('appprincipal.urls'))
+    path('minhasvendas/', FuncListView.as_view(), name="lista"),
+    path('admin/', admin.site.urls),
+    #path('about/', AboutView.as_view(), name = "about"),
+    path('funcionario/', FuncionarioCreateView.as_view(), name = "funcionario_cadastrar"),
+    path('newproduto/', CadastProdView.as_view(), name = "prod"),
+    path('novavenda/', NewVendaView.as_view(), name = "novavend"),
+    path('', include('website.urls', namespace='website')),
+    ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+
+]

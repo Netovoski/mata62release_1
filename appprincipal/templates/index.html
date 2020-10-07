@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div>
+
+    <h4>Historico de dados ANAC 2015-2019</h4>
+</div>
+
+<table class="table table-hover">
+    <thead>
+
+<a href="{% url 'appprincipal:historico' %}" class="btn btn-primary btn-md btn-trim" role="button"> Gráfico Voos Realizados X Empresa</a>
+    </thead>
+</br>
+</br>
+    <thead>
+
+    <a href="{% url 'appprincipal:dashboard_with_pivot' %}" class="btn btn-primary btn-md btn-trim" role="button"> Dashboard Gráficos</a>
+</thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+{% endblock %}

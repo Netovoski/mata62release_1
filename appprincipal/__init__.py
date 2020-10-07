@@ -1,0 +1,3 @@
+
+
+from projpad.settings import *
